@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qianyou Luxury B2B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE formal and elegant, a supplier's trade page for professional resellers
+   IDEA the printed line sheet a wholesaler hands to a buyer: brand mark, stock photos, terms on one card
+   PICTURE the real showroom photo full width, with the live stock catalogue below it
+   COLOUR white ground, the logo's deep ink blue as full bands, its champagne as the one accent
+   TYPE Cormorant Garamond (echoes the logo lettering) + Inter
+   LAYOUT laptop: title across the top, showroom photo beneath at full width, stock grid with brand filters; phone: stacked */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0e1220);--ink:light-dark(#141824,#eef0f5);--soft:light-dark(#596075,#a9b0c2);--line:light-dark(#e3e5ec,#262c40);--navy:#1a2238;--navy2:light-dark(#f3f4f8,#151b2e);--gold:light-dark(#9a7b45,#d6bf8f);--champ:#d6bf8f}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h1{font-size:clamp(34px,5vw,54px)}
+h2{font-size:clamp(30px,3.6vw,42px)}
+h3{font-size:24px}
+p{margin:0 0 12px;max-width:66ch}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,72px);padding-inline:max(5vw,16px)}
+nav{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;padding:10px max(5vw,16px)}
+nav .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+nav .mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:600;margin-right:auto}
+nav .mark img{width:38px;height:38px;border-radius:50%;object-fit:cover}
+nav .links{display:flex;gap:18px;flex-wrap:wrap;font-size:15px}
+nav .links a{text-decoration:none;opacity:.85;padding:10px 0}
+nav .links a:hover{opacity:1;text-decoration:underline}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 20px;border-radius:999px;background:var(--champ);color:#141824;font-weight:600;text-decoration:none;white-space:nowrap}
+.btn:hover{filter:brightness(1.06)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.btn.ghost{background:transparent;color:inherit;border:1px solid currentColor}
+.hero{padding-bottom:0}
+.hero .top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px 48px;align-items:end;margin-bottom:28px}
+.hero .lead{font-size:18px;color:var(--soft)}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin:0;border-top:1px solid var(--line);padding-top:16px}
+.facts dt{font-size:13px;color:var(--soft)}
+.facts dd{margin:0;font-weight:600}
+.photo{border-radius:6px;overflow:hidden;aspect-ratio:16/7.2;background:var(--navy2)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.cap{font-size:13px;color:var(--soft);margin-top:8px}
+.stock{background:var(--navy2)}
+.stock .head{display:flex;justify-content:space-between;align-items:end;gap:12px 24px;flex-wrap:wrap}
+.stock .head p{color:var(--soft);margin:8px 0 0}
+.tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:22px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chip{min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:500 15px Inter,sans-serif;cursor:pointer;white-space:nowrap}
+.chip span{color:var(--soft);font-weight:400;margin-left:4px}
+.chip[aria-pressed=true]{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip[aria-pressed=true] span{color:var(--champ)}
+:root[data-theme=dark] .chip[aria-pressed=true]{background:var(--champ);border-color:var(--champ);color:#141824}
+:root[data-theme=dark] .chip[aria-pressed=true] span{color:#141824}
+.opts{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:15px}
+.opts select{font:16px Inter,sans-serif;min-height:44px;padding:8px 12px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.opts label{display:flex;align-items:center;gap:8px;cursor:pointer}
+.opts input{width:20px;height:20px;accent-color:var(--gold)}
+.count{color:var(--soft);font-size:15px;margin:4px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:18px}
+@media(max-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.item .body{padding:10px}.item .t{font-size:14px}.item .p{font-size:22px}.chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;margin-inline:-16px;padding-inline:16px}}
+.item{background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.item img{width:100%;aspect-ratio:274/296;object-fit:cover;background:var(--line)}
+.item .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.item .b{font-size:13px;font-weight:600;color:var(--gold)}
+.item .t{font-size:15px;line-height:1.35}
+.item .m{font-size:13px;color:var(--soft)}
+.item .n{font-size:13px;color:var(--soft);font-style:italic}
+.item .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:8px;flex-wrap:wrap}
+.item .p{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:600;white-space:nowrap}
+.item .ask{font-size:14px;font-weight:600;color:var(--gold);text-decoration:none;padding:8px 0;white-space:nowrap}
+.item .ask:hover{text-decoration:underline}
+.ie{display:inline-block;align-self:flex-start;font-size:13px;padding:2px 8px;border-radius:4px;background:#e6efe7;color:#1f5130}
+:root[data-theme=dark] .ie{background:#1f3a28;color:#cfe8d4}
+.more{display:flex;justify-content:center;margin-top:24px}
+.more button{min-height:44px;padding:10px 24px;border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);font:600 15px Inter,sans-serif;cursor:pointer}
+.empty{padding:32px;text-align:center;color:var(--soft);border:1px dashed var(--line);border-radius:6px}
+.brands{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:22px;font-family:"Cormorant Garamond",serif;font-size:24px;color:var(--champ)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 56px;align-items:start}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.card{border:1px solid var(--line);border-radius:6px;padding:22px}
+.card h3{margin-bottom:8px}
+.card p{color:var(--soft);margin:0}
+.side img{border-radius:6px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.markets{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px;padding:0;list-style:none}
+.markets li{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:15px}
+.alt{background:var(--navy2)}
+.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:s}
+.steps li{position:relative;padding:44px 22px 0 0;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;top:0;left:0;width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--champ);display:grid;place-items:center;font:600 15px Inter,sans-serif}
+:root[data-theme=dark] .steps li::before{background:#2a3452}
+.steps li::after{content:"";position:absolute;top:15px;left:38px;right:8px;border-top:1px solid var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:22px;margin-bottom:6px}
+.steps p{color:var(--soft);font-size:15px}
+.terms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:6px;margin-top:28px;overflow:hidden}
+.terms div{padding:22px;border-left:1px solid var(--line)}
+.terms div:first-child{border-left:0}
+.terms dt{font-size:14px;color:var(--soft)}
+.terms dd{margin:6px 0 8px;font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600;line-height:1.1;color:var(--gold)}
+.terms p{font-size:15px;margin:0;color:var(--soft)}
+.note{font-size:14px;color:var(--soft);margin-top:14px}
+.reg{width:100%;border-collapse:collapse;font-size:15px;margin-top:14px}
+.reg th,.reg td{text-align:left;padding:10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.reg th{font-weight:500;color:var(--soft);width:40%;padding-right:16px}
+.lic img{border-radius:6px;border:1px solid var(--line)}
+.contact{background:var(--navy);color:#fff}
+.contact .two{align-items:center}
+.contact p{color:#c9cede}
+.wa{font-family:"Cormorant Garamond",serif;font-size:clamp(30px,4vw,44px);font-weight:600;color:var(--champ);white-space:nowrap;margin:6px 0 14px}
+footer{background:#111729;color:#9aa2b8;font-size:14px;padding:22px max(5vw,16px)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:900px){.cards{grid-template-columns:minmax(0,1fr)}.steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}.steps li:nth-child(2)::after{display:none}.terms{grid-template-columns:repeat(2,minmax(0,1fr))}.terms div:nth-child(3){border-left:0}.terms div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media(max-width:720px){.hero .top,.two{grid-template-columns:minmax(0,1fr)}.photo{aspect-ratio:4/3}.side img{aspect-ratio:16/10}nav .links{display:none}}
+@media(max-width:480px){.steps,.terms{grid-template-columns:minmax(0,1fr)}.steps li::after{display:none}.terms div{border-left:0;border-top:1px solid var(--line)}.terms div:first-child{border-top:0}.facts{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="mark" href="#top"><img src="img/logo.jpg" alt="Qianyou Luxury logo">Qianyou Luxury</a>
+    <div class="links"><a href="#stock">Stock</a><a href="#about">About</a><a href="#sourcing">Sourcing</a><a href="#process">How it works</a><a href="#terms">Terms</a><a href="#company">Company</a></div>
+    <a class="btn" href="https://wa.me/353851904746">WhatsApp us</a>
+  </div>
+</nav>
+
+<header class="band hero" id="top">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>Pre-owned designer handbags, sourced and authenticated in China for professional resellers</h1>
+        <p class="lead" style="margin-top:16px">Qianyou Luxury is the trading name of Hangzhou Qianyou Network Technology Co., Ltd. Our team in China buys, sources and authenticates pre-owned luxury bags and supplies them to retailers and resellers abroad.</p>
+        <div class="cta"><a class="btn" href="https://wa.me/353851904746">Talk to us on WhatsApp</a><a class="btn ghost" href="#stock">Browse current stock</a></div>
+      </div>
+      <dl class="facts">
+        <div><dt>Company</dt><dd>Hangzhou Qianyou Network Technology Co., Ltd.</dd></div>
+        <div><dt>Established</dt><dd>16 February 2022</dd></div>
+        <div><dt>Based in</dt><dd>Hangzhou, Zhejiang, China</dd></div>
+        <div><dt>We work with</dt><dd>B2B buyers only</dd></div>
+      </dl>
+    </div>
+    <div class="photo"><img src="img/showroom.jpg" alt="Shelves of pre-owned designer handbags in the Qianyou showroom in Hangzhou"></div>
+    <p class="cap">Our showroom in Hangzhou.</p>
+  </div>
+</header>
+
+<section class="band stock" id="stock" style="margin-top:36px" aria-labelledby="stock-h">
+  <div class="wrap">
+    <div class="head">
+      <div><h2 id="stock-h">Current stock</h2><p id="stock-sub">Bags available now, photographed in-house. Stock is refreshed daily from our inventory.</p></div>
+      <a class="btn ghost" href="https://wa.me/353851904746">Ask for condition photos</a>
+    </div>
+    <div class="tools">
+      <ul class="chips" id="chips" aria-label="Filter by brand"></ul>
+    </div>
+    <div class="opts">
+      <label for="sort">Sort</label>
+      <select id="sort"><option value="new">Newest first</option><option value="low">Price, low to high</option><option value="high">Price, high to low</option><option value="brand">Brand A to Z</option></select>
+      <label for="ieonly"><input type="checkbox" id="ieonly"> Stock held in Ireland only</label>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+    <div class="more"><button type="button" id="more" hidden>Show more</button></div>
+    <p class="note">Prices are per piece in EUR, excluding import duties and taxes. Shipping is quoted per order. Minimum order 10 pieces, mixed brands welcome. Detailed condition photos are sent for every piece you shortlist. Please confirm availability with us before ordering, as pieces also sell in other channels.</p>
+  </div>
+</section>
+
+<section class="band" id="about">
+  <div class="wrap two">
+    <div>
+      <h2>A sourcing team on the ground in China</h2>
+      <p style="margin-top:16px">Our team works in China's pre-owned luxury market every day: buying from private sellers and trade sources, checking every piece, and grading condition before it is offered to a buyer.</p>
+      <p>We began by supplying pre-owned luxury goods to livestream sales teams and trade fairs in China, then grew into international supply. We have supplied livestream sales teams in China and the United States, and have worked with pre-owned luxury businesses and TikTok Shop sellers in several markets.</p>
+      <ul class="markets" aria-label="Markets we have worked with"><li>Ireland</li><li>Japan</li><li>France</li><li>United States</li><li>China</li></ul>
+      <p>Our main stock and regular dispatch are in China, shipped through partner international logistics. We have a contact in Ireland for buyers in Europe and the UK.</p>
+    </div>
+    <div class="side"><img src="img/stock.jpg" alt="A large selection of designer bags laid out for sorting"><p class="cap">Incoming stock being sorted for grading.</p></div>
+  </div>
+  <div class="wrap cards" id="sourcing">
+    <div class="card"><h3>Buying and recovery</h3><p>We buy pre-owned luxury goods in China continuously, which keeps a steady flow of well-known brands and models coming in.</p></div>
+    <div class="card"><h3>Authentication and grading</h3><p>Every piece is checked by our own team. We describe condition honestly and photograph every flaw before you decide.</p></div>
+    <div class="card"><h3>Sourcing to your brief</h3><p>Tell us the brands, models, condition grades and price range your customers want. We search the Chinese market for them and come back with options.</p></div>
+  </div>
+</section>
+
+<section class="band alt" id="process">
+  <div class="wrap">
+    <h2>How buying from us works</h2>
+    <p style="margin-top:12px;color:var(--soft)">You see every bag in detail before anything is paid for or shipped.</p>
+    <ol class="steps">
+      <li><h3>Tell us what you need</h3><p>Brands, models, colours, condition grades, whether you accept repaired pieces, quantity and target prices. Your own buying sheet is welcome.</p></li>
+      <li><h3>Receive a selection</h3><p>We send a list of matching pieces from stock or from our sourcing, with prices in euro.</p></li>
+      <li><h3>Review detailed photos</h3><p>For the pieces you shortlist, we send close-up photos of every mark, scuff and flaw, plus what accessories come with it.</p></li>
+      <li><h3>Confirm and ship</h3><p>Once you confirm the items and the order, we invoice, pack and ship to your address.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="terms">
+  <div class="wrap">
+    <h2>Standard trade terms</h2>
+    <dl class="terms">
+      <div><dt>Minimum order</dt><dd>10 pieces</dd><p>Mixed brands and models are fine.</p></div>
+      <div><dt>Payment</dt><dd>50% + 50%</dd><p>50% deposit before dispatch. The remaining 50% once you have received and checked the goods.</p></div>
+      <div><dt>Delivery</dt><dd>DAP</dd><p>We arrange shipping to your address. Import duties and taxes are paid by the buyer.</p></div>
+      <div><dt>Settlement</dt><dd>EUR transfer</dd><p>Company-to-company bank transfer in euro, against our invoice. Ask us if you need to pay in GBP.</p></div>
+    </dl>
+    <p class="note">Prices, condition notes and delivery details are confirmed in writing for each order.</p>
+  </div>
+</section>
+
+<section class="band alt" id="company">
+  <div class="wrap two">
+    <div>
+      <h2>Company registration</h2>
+      <p style="margin-top:14px">We are a registered limited company in China. Our details can be checked on China's National Enterprise Credit Information Publicity System (<a href="https://www.gsxt.gov.cn">gsxt.gov.cn</a>).</p>
+      <table class="reg">
+        <tr><th>Registered name</th><td>Hangzhou Qianyou Network Technology Co., Ltd.</td></tr>
+        <tr><th>Chinese name</th><td>杭州仟优网络科技有限公司</td></tr>
+        <tr><th>Unified Social Credit Code</th><td style="overflow-wrap:anywhere">91330109MA7GT5FJ7X</td></tr>
+        <tr><th>Established</th><td>16 February 2022</td></tr>
+        <tr><th>Registered in</th><td>Xiaoshan District, Hangzhou, Zhejiang, China</td></tr>
+        <tr><th>Licensed activities include</th><td>Sale of second-hand goods, luggage and bags; consignment; import and export of goods</td></tr>
+      </table>
+      <p class="note">An English translation of our business licence is available on request.</p>
+    </div>
+    <figure class="lic" style="margin:0"><img src="img/licence.jpg" alt="Chinese business licence of Hangzhou Qianyou Network Technology Co., Ltd."><figcaption class="cap">Business licence (Chinese original).</figcaption></figure>
+  </div>
+</section>
+
+<section class="band contact" id="contact">
+  <div class="wrap two">
+    <div>
+      <h2>Send us your buying brief</h2>
+      <p style="margin-top:14px">Message us on WhatsApp with the brands and models you are looking for, or ask for our current selection. We reply in English.</p>
+    </div>
+    <div>
+      <div style="color:#c9cede;font-size:15px">WhatsApp</div>
+      <div class="wa">+353 85 190 4746</div>
+      <a class="btn" href="https://wa.me/353851904746">Open WhatsApp chat</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Qianyou Luxury · Hangzhou Qianyou Network Technology Co., Ltd.</span><span>Business-to-business supply only</span></div></footer>
+
+<script>
+{
+const WA="353851904746";
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const grid=document.getElementById("grid"),chips=document.getElementById("chips"),count=document.getElementById("count"),more=document.getElementById("more"),sortSel=document.getElementById("sort"),ieOnly=document.getElementById("ieonly"),sub=document.getElementById("stock-sub");
+const PAGE=24;
+let items=[],brand="All",shown=PAGE;
+const fmt=n=>"\u20ac"+Number(n).toLocaleString("en-IE");
+const card=d=>{
+  const meta=[d.w?"Width "+esc(d.w)+" cm":"","Ref. "+esc(d.ref)].filter(Boolean).join(" \u00b7 ");
+  const msg=encodeURIComponent("Hello, I am interested in Ref. "+d.ref+" ("+d.brand+" "+d.title+"). Is it available?");
+  return `<article class="item"><img loading="lazy" src="stock/${esc(d.ref)}.jpg" alt="${esc(d.brand+" "+d.title)}"><div class="body"><div class="b">${esc(d.brand)}</div><div class="t">${esc(d.title)}</div><div class="m">${meta}</div>${d.note?`<div class="n">${esc(d.note)}</div>`:""}${d.ie?`<span class="ie">In Ireland</span>`:""}<div class="row"><span class="p">${esc(fmt(d.eur))}</span><a class="ask" href="https://wa.me/${WA}?text=${msg}">Ask on WhatsApp</a></div></div></article>`;
+};
+const list=()=>{
+  let r=items.filter(d=>(brand==="All"||d.brand===brand)&&(!ieOnly.checked||d.ie));
+  const k=sortSel.value;
+  r.sort(k==="low"?(a,b)=>a.eur-b.eur:k==="high"?(a,b)=>b.eur-a.eur:k==="brand"?(a,b)=>a.brand.localeCompare(b.brand)||b.ref-a.ref:(a,b)=>b.ref-a.ref);
+  return r;
+};
+const render=()=>{
+  const r=list();
+  grid.innerHTML=r.length?r.slice(0,shown).map(card).join(""):`<div class="empty">No pieces match this filter right now. Message us and we will source it for you.</div>`;
+  count.textContent=r.length+(r.length===1?" piece":" pieces")+(brand==="All"?"":" from "+brand)+(ieOnly.checked?" held in Ireland":"");
+  more.hidden=r.length<=shown;
+  more.textContent="Show more ("+(r.length-shown)+" left)";
+};
+const drawChips=()=>{
+  const c={};items.forEach(d=>{c[d.brand]=(c[d.brand]||0)+1});
+  const names=["All",...Object.keys(c).sort((a,b)=>c[b]-c[a]||a.localeCompare(b))];
+  chips.innerHTML=names.map(n=>`<li><button type="button" class="chip" data-b="${esc(n)}" aria-pressed="${n===brand}">${esc(n)}<span>${n==="All"?items.length:c[n]}</span></button></li>`).join("");
+};
+chips.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;brand=b.dataset.b;shown=PAGE;drawChips();render()});
+sortSel.addEventListener("change",()=>{shown=PAGE;render()});
+ieOnly.addEventListener("change",()=>{shown=PAGE;render()});
+more.addEventListener("click",()=>{shown+=PAGE;render()});
+fetch("stock.json").then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{
+  items=(j.items||[]).map(d=>({...d,ref:String(d.ref),eur:+d.eur}));
+  const dt=j.updated?new Date(j.updated+"T12:00:00Z").toLocaleDateString("en-IE",{day:"numeric",month:"long",year:"numeric"}):"";
+  sub.textContent="Bags available now, photographed in-house."+(dt?" Updated "+dt+".":"");
+  drawChips();render();
+}).catch(()=>{grid.innerHTML=`<div class="empty">The stock list could not be loaded. Message us on WhatsApp for the current list.</div>`;count.textContent=""});
+}
+</script>
+</body>
+</html>
